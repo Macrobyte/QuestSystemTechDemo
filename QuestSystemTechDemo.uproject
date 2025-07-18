@@ -8,6 +8,16 @@
 			"Name": "QuestSystemTechDemo",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "QuestSystem",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name" : "GameplayMessageRuntime",
+			"Type" : "Runtime",
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [

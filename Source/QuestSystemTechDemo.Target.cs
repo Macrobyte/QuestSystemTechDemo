@@ -11,5 +11,8 @@ public class QuestSystemTechDemoTarget : TargetRules
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_4;
 		ExtraModuleNames.Add("QuestSystemTechDemo");
+		ExtraModuleNames.Add("GameplayMessageRuntime");
+		ExtraModuleNames.Add("QuestSystem");
 	}
+	
 }

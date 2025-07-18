@@ -10,6 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "GameFramework/GameplayMessageSubsystem.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 

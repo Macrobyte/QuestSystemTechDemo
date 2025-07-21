@@ -12,11 +12,15 @@
 		{
 			"Name": "QuestSystem",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"CoreUObject"
+			]
 		},
 		{
-			"Name" : "GameplayMessageRuntime",
-			"Type" : "Runtime",
+			"Name": "GameplayMessageRuntime",
+			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
 	],

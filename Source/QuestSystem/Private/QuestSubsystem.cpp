@@ -5,12 +5,21 @@
 #include "QuestBase.h"
 #include "QuestEventMessage.h"
 
-void UQuestSubsystem::AddQuest(UQuestBase* Quest)
+void UQuestSubsystem::AcceptQuest(UQuestBase* Quest)
 {
 	
 }
 
-void UQuestSubsystem::RemoveQuest(UQuestBase* Quest)
+void UQuestSubsystem::CompleteQuest(UQuestBase* Quest)
+{
+}
+
+void UQuestSubsystem::TrackQuest(UQuestBase* Quest)
+{
+	
+}
+
+void UQuestSubsystem::UntrackQuest(UQuestBase* Quest)
 {
 }
 

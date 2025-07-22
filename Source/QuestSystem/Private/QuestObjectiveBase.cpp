@@ -5,13 +5,10 @@
 
 void UQuestObjectiveBase::Initialize(UQuestBase* Quest)
 {
+	OwningQuest = Quest;
 }
 
 void UQuestObjectiveBase::HandleMessage(const FQuestEventMessage& Message)
 {
 }
 
-bool UQuestObjectiveBase::IsComplete() const
-{
-	return false;
-}

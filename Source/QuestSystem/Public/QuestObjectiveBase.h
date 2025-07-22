@@ -16,11 +16,17 @@ class QUESTSYSTEM_API UQuestObjectiveBase : public UObject
 {
 	GENERATED_BODY()
 
+private:
+	UPROPERTY()
+	UQuestBase* OwningQuest;
+	
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Objective")
 	FGameplayTag ObjectiveTag;
 
 	virtual void Initialize(UQuestBase* Quest);
 	virtual void HandleMessage(const FQuestEventMessage& Message);
-	virtual bool IsComplete() const;
+	virtual bool IsComplete() const { return false; }
+
+	UQuestBase* GetOwningQuest() const { return OwningQuest; }
 };

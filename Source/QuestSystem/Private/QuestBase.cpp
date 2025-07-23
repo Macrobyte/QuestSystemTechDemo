@@ -2,11 +2,3 @@
 
 
 #include "QuestBase.h"
-
-void UQuestBase::StartQuest()
-{
-}
-
-void UQuestBase::CompleteQuest()
-{
-}

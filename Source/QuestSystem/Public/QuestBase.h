@@ -29,12 +29,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Quest")
 	TArray<TSubclassOf<UQuestObjectiveBase>> Objectives;
 
-	UPROPERTY(VisibleAnywhere, Category = "State")
+	UPROPERTY(VisibleAnywhere, Category = "Quest|State")
 	bool bIsActive = false;
-
-public:
-
-	virtual void StartQuest();
-	virtual void CompleteQuest();
-	
 };

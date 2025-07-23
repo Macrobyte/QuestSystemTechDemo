@@ -17,7 +17,7 @@ struct QUESTSYSTEM_API FQuestEventMessage
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Quest")
 	FGameplayTag ObjectiveTag;
 
-	// The actor that triggered the event, can be null if not applicable
+	// The actor that triggered the event can be null if not applicable
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Quest")
 	AActor* Instigator;
 

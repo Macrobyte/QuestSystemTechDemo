@@ -10,35 +10,56 @@
 #include "QuestSubsystem.generated.h"
 
 
+struct FQuestInstance;
+class UQuestGiver;
+class UQuestBearer;
 class UQuestBase;
-/**
- * 
- */
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestAccepted, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestCompleted, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestTurnedIn, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
+
 UCLASS()
 class QUESTSYSTEM_API UQuestSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 
 public:
-	void AcceptQuest(UQuestBase* Quest);
-	void CompleteQuest(UQuestBase* Quest);
-
-	// Quest tracking allows players to keep track of active quests. Good for UI and quest log systems.
-	void TrackQuest(UQuestBase* Quest);
-	void UntrackQuest(UQuestBase* Quest);
+	void AcceptQuest(UQuestBase* Quest, UQuestBearer* Bearer, UQuestGiver* Giver);
 	
 	void HandleQuestEvent(const FGameplayTag& Channel, const FQuestEventMessage& Message);
 
+	UPROPERTY(BlueprintAssignable, Category = "Quest Events")
+	FOnQuestAccepted OnQuestAccepted;
+
+	UPROPERTY(BlueprintAssignable, Category = "Quest Events")
+	FOnQuestCompleted OnQuestCompleted;
+
+	UPROPERTY(BlueprintAssignable, Category = "Quest Events")
+	FOnQuestTurnedIn OnQuestTurnedIn;
+	
 private:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 	
 	UPROPERTY()
-	TMap<FGameplayTag, UQuestBase*> ActiveQuests;
-
-	UPROPERTY()
-	TSet<UQuestBase*> TrackedQuests;
+	TMap<FGameplayTag, FQuestInstance> ActiveQuests;
 	
 	FGameplayMessageListenerHandle ListenerHandle;
 	
+};
+
+USTRUCT()
+struct FQuestInstance
+{
+	GENERATED_BODY()
+
+	UPROPERTY()
+	UQuestBase* Quest;
+
+	UPROPERTY()
+	UQuestBearer* Bearer;
+
+	UPROPERTY()
+	UQuestGiver* Giver;
 };

@@ -5,33 +5,24 @@
 #include "QuestBase.h"
 #include "QuestEventMessage.h"
 
-void UQuestSubsystem::AcceptQuest(UQuestBase* Quest)
+void UQuestSubsystem::AcceptQuest(UQuestBase* Quest, UQuestBearer* Bearer, UQuestGiver* Giver)
 {
+	FQuestInstance QuestInstance;
+	QuestInstance.Quest = Quest;
+	QuestInstance.Bearer = Bearer;
+	QuestInstance.Giver = Giver;
 	
-}
+	ActiveQuests.Add(QuestInstance.Quest->QuestTag, QuestInstance);
 
-void UQuestSubsystem::CompleteQuest(UQuestBase* Quest)
-{
-}
+	QuestInstance.Quest->bIsActive = true;
 
-void UQuestSubsystem::TrackQuest(UQuestBase* Quest)
-{
+	OnQuestAccepted.Broadcast(QuestInstance.Quest, QuestInstance.Bearer, QuestInstance.Giver);
 	
-}
-
-void UQuestSubsystem::UntrackQuest(UQuestBase* Quest)
-{
 }
 
 void UQuestSubsystem::HandleQuestEvent(const FGameplayTag& Channel, const FQuestEventMessage& Message)
 {
-	if (UQuestBase** QuestPtr = ActiveQuests.Find(Channel))
-	{
-		if (UQuestBase* Quest = *QuestPtr)
-		{
-			// TODO -  Finish later
-		}
-	}
+	
 }
 
 void UQuestSubsystem::Initialize(FSubsystemCollectionBase& Collection)

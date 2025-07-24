@@ -9,11 +9,27 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "QuestSubsystem.generated.h"
 
-
-struct FQuestInstance;
 class UQuestGiver;
 class UQuestBearer;
 class UQuestBase;
+
+/**
+ * Represents an instance of a quest, including the quest itself, the bearer (player), and the giver (NPC or QuestBoard).
+ */
+USTRUCT()
+struct FQuestInstance
+{
+	GENERATED_BODY()
+
+	UPROPERTY()
+	UQuestBase* Quest;
+
+	UPROPERTY()
+	UQuestBearer* Bearer;
+
+	UPROPERTY()
+	UQuestGiver* Giver;
+};
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestAccepted, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestCompleted, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
@@ -49,17 +65,4 @@ private:
 	
 };
 
-USTRUCT()
-struct FQuestInstance
-{
-	GENERATED_BODY()
 
-	UPROPERTY()
-	UQuestBase* Quest;
-
-	UPROPERTY()
-	UQuestBearer* Bearer;
-
-	UPROPERTY()
-	UQuestGiver* Giver;
-};

@@ -6,8 +6,6 @@
 #include "Components/ActorComponent.h"
 #include "QuestGiver.generated.h"
 
-
-struct FQuestEntry;
 class UQuestBearer;
 class UQuestBase;
 
@@ -23,7 +21,7 @@ public:
 	UQuestBase* ActiveQuest = nullptr;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FQuestEntry> Quests;
+	TArray<UQuestBase* > Quests;
 
 	// When player accepts a quest give them the next quest in the list.
 	// In UI this will be a button to accept the quest.
@@ -42,17 +40,4 @@ private:
 		
 };
 
-USTRUCT(BlueprintType)
-struct FQuestEntry
-{
-	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UQuestBase* Quest;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	bool bIsCompleted = false;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	bool bIsActive = false;
-};

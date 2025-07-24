@@ -10,7 +10,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
-#include "GameFramework/GameplayMessageSubsystem.h"
+#include "QuestBearer.h"
+#include "QuestGiver.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -53,12 +54,18 @@ AQuestSystemTechDemoCharacter::AQuestSystemTechDemoCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	QuestBearer = CreateDefaultSubobject<UQuestBearer>(TEXT("QuestBearer"));
+
+	QuestGiver = CreateDefaultSubobject<UQuestGiver>(TEXT("QuestGiver"));
 }
 
 void AQuestSystemTechDemoCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+
+	//QuestGiver->GiveQuest(QuestBearer);
 }
 
 //////////////////////////////////////////////////////////////////////////

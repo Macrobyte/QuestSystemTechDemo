@@ -3,6 +3,8 @@
 
 #include "QuestBearer.h"
 
+#include "QuestBase.h"
+
 // Sets default values for this component's properties
 UQuestBearer::UQuestBearer()
 {
@@ -16,7 +18,10 @@ void UQuestBearer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("QuestBearer Component Initialized!"));
 	
+	// for (auto &Quest : AcceptedQuests)
+	// 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Accepted Quest: %s"), *Quest->Title.ToString()));
 }
 
 

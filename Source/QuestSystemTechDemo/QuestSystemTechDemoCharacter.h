@@ -7,6 +7,8 @@
 #include "Logging/LogMacros.h"
 #include "QuestSystemTechDemoCharacter.generated.h"
 
+class UQuestGiver;
+class UQuestBearer;
 class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
@@ -43,7 +45,14 @@ class AQuestSystemTechDemoCharacter : public ACharacter
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UQuestBearer* QuestBearer;
 
+	// I AM MY OWN QUEST GIVER
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UQuestGiver* QuestGiver;
+	
 public:
 	AQuestSystemTechDemoCharacter();
 	

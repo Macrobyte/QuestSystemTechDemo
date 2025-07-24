@@ -3,6 +3,7 @@
 
 #include "QuestSubsystem.h"
 #include "QuestBase.h"
+#include "QuestBearer.h"
 #include "QuestEventMessage.h"
 
 void UQuestSubsystem::AcceptQuest(UQuestBase* Quest, UQuestBearer* Bearer, UQuestGiver* Giver)
@@ -12,12 +13,13 @@ void UQuestSubsystem::AcceptQuest(UQuestBase* Quest, UQuestBearer* Bearer, UQues
 	QuestInstance.Bearer = Bearer;
 	QuestInstance.Giver = Giver;
 	
+	QuestInstance.Quest->bIsActive = true;
+	
 	ActiveQuests.Add(QuestInstance.Quest->QuestTag, QuestInstance);
 
-	QuestInstance.Quest->bIsActive = true;
+	Bearer->AcceptedQuests.Add(QuestInstance.Quest);
 
 	OnQuestAccepted.Broadcast(QuestInstance.Quest, QuestInstance.Bearer, QuestInstance.Giver);
-	
 }
 
 void UQuestSubsystem::HandleQuestEvent(const FGameplayTag& Channel, const FQuestEventMessage& Message)
@@ -29,16 +31,7 @@ void UQuestSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 
-	// Get the gameplay message subsystem
-	UGameplayMessageSubsystem& MessageSubsystem = UGameplayMessageSubsystem::Get(this);
-	
-	ListenerHandle = MessageSubsystem.RegisterListener<FQuestEventMessage>(
-		FGameplayTag::RequestGameplayTag(FName("Quest.Event")),
-		[this](const FGameplayTag& Channel, const FQuestEventMessage& Message)
-		{
-			HandleQuestEvent(Channel, Message);
-		}
-	);
+
 }
 
 void UQuestSubsystem::Deinitialize()

@@ -26,29 +26,27 @@ void UQuestGiver::GiveQuest(UQuestBearer* QuestBearer)
 		return; // No quests to give
 	}
 
-	FQuestEntry& CurrentEntry = Quests[0]; // Get the first quest entry in the list
+	UQuestBase* Quest = Quests[0]; // Get the first quest entry in the list
 	
-	if (ActiveQuest == CurrentEntry.Quest)
+	if (ActiveQuest == Quest)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Quest %s is already active."), *CurrentEntry.Quest->Title.ToString());
+		UE_LOG(LogTemp, Warning, TEXT("Quest %s is already active."), *Quest->Title.ToString());
 		return; // If the quest is already active, do not give it again.
 	}
-
+	
 	UGameInstance* GameInstance = GetWorld()->GetGameInstance();
 	UQuestSubsystem* QuestSubsystem = GameInstance->GetSubsystem<UQuestSubsystem>();
 
-	QuestSubsystem->AcceptQuest(CurrentEntry.Quest, QuestBearer, this);
+	ActiveQuest = Quest;
 
-	ActiveQuest = CurrentEntry.Quest;
-	
+	QuestSubsystem->AcceptQuest(Quest, QuestBearer, this);
 }
 
 void UQuestGiver::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
-	
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("QuestGiver Component Initialized!"));
 }
 
 

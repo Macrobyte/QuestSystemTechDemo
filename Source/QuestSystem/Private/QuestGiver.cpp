@@ -7,6 +7,8 @@
 #include "QuestBearer.h"
 #include "QuestSubsystem.h"
 
+DEFINE_LOG_CATEGORY(LogQuestSystem);
+
 // Sets default values for this component's properties
 UQuestGiver::UQuestGiver()
 {
@@ -18,20 +20,20 @@ UQuestGiver::UQuestGiver()
 }
 
 
-void UQuestGiver::GiveQuest(UQuestBearer* QuestBearer)
+bool UQuestGiver::GiveQuest(UQuestBearer* QuestBearer)
 {
 	if (Quests.Num() == 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No quests available to give."));
-		return; // No quests to give
+		UE_LOG(LogQuestSystem, Warning, TEXT("No quests available to give."));
+		return false; // No quests to give
 	}
 
 	UQuestBase* Quest = Quests[0]; // Get the first quest entry in the list
 	
 	if (ActiveQuest == Quest)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Quest %s is already active."), *Quest->Title.ToString());
-		return; // If the quest is already active, do not give it again.
+		UE_LOG(LogQuestSystem, Warning, TEXT("Quest %s is already active."), *Quest->Title.ToString());
+		return false; // If the quest is already active, do not give it again.
 	}
 	
 	UGameInstance* GameInstance = GetWorld()->GetGameInstance();
@@ -40,6 +42,17 @@ void UQuestGiver::GiveQuest(UQuestBearer* QuestBearer)
 	ActiveQuest = Quest;
 
 	QuestSubsystem->AcceptQuest(Quest, QuestBearer, this);
+
+	return true;
+}
+
+UQuestBase* UQuestGiver::GetFirstQuest() const
+{
+	if (Quests.Num() > 0)
+	{
+		return Quests[0];
+	}
+	return nullptr;
 }
 
 void UQuestGiver::BeginPlay()

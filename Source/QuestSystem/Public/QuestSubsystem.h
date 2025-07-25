@@ -9,6 +9,8 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "QuestSubsystem.generated.h"
 
+
+
 class UQuestGiver;
 class UQuestBearer;
 class UQuestBase;

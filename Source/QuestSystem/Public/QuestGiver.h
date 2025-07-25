@@ -6,6 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "QuestGiver.generated.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(LogQuestSystem, Warning, All);
+
 class UQuestBearer;
 class UQuestBase;
 
@@ -17,7 +19,7 @@ class QUESTSYSTEM_API UQuestGiver : public UActorComponent
 public:	
 	UQuestGiver();
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UQuestBase* ActiveQuest = nullptr;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -26,8 +28,12 @@ public:
 	// When player accepts a quest give them the next quest in the list.
 	// In UI this will be a button to accept the quest.
 	UFUNCTION(BlueprintCallable, Category = "Quest")
-	void GiveQuest(UQuestBearer* QuestBearer);
+	bool GiveQuest(UQuestBearer* QuestBearer);
 
+	UFUNCTION(BlueprintCallable, Category = "Quest")
+	UQuestBase* GetFirstQuest() const;
+	
+	
 protected:
 	virtual void BeginPlay() override;
 

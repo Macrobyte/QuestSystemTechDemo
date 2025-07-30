@@ -33,9 +33,6 @@ struct FQuestInstance
 	UQuestGiver* Giver;
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestAccepted, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestCompleted, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestTurnedIn, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
 
 UCLASS()
 class QUESTSYSTEM_API UQuestSubsystem : public UGameInstanceSubsystem
@@ -46,15 +43,20 @@ public:
 	void AcceptQuest(UQuestBase* Quest, UQuestBearer* Bearer, UQuestGiver* Giver);
 	
 	void HandleQuestEvent(const FGameplayTag& Channel, const FQuestEventMessage& Message);
-
+	
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestAccepted, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
 	UPROPERTY(BlueprintAssignable, Category = "Quest Events")
 	FOnQuestAccepted OnQuestAccepted;
-
+	
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestCompleted, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
 	UPROPERTY(BlueprintAssignable, Category = "Quest Events")
 	FOnQuestCompleted OnQuestCompleted;
 
-	UPROPERTY(BlueprintAssignable, Category = "Quest Events")
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestTurnedIn, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
+	UPROPERTY(BlueprintCallable, Category = "Quest Events")
 	FOnQuestTurnedIn OnQuestTurnedIn;
+
+
 	
 private:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;

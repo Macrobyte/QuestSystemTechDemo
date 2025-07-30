@@ -48,10 +48,6 @@ class AQuestSystemTechDemoCharacter : public ACharacter
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UQuestBearer* QuestBearer;
-
-	// I AM MY OWN QUEST GIVER
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	UQuestGiver* QuestGiver;
 	
 public:
 	AQuestSystemTechDemoCharacter();

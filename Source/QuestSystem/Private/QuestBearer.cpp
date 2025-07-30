@@ -17,11 +17,9 @@ UQuestBearer::UQuestBearer()
 void UQuestBearer::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("QuestBearer Component Initialized!"));
-	
-	// for (auto &Quest : AcceptedQuests)
-	// 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Accepted Quest: %s"), *Quest->Title.ToString()));
+
+	FString Message = FString::Printf(TEXT("QuestBearer Component Initialized: %s"), *GetOwner()->GetActorLabel());
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, Message);
 }
 
 

@@ -59,7 +59,8 @@ void UQuestGiver::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("QuestGiver Component Initialized!"));
+	FString Message = FString::Printf(TEXT("QuestGiver Component Initialized: %s"), *GetOwner()->GetActorLabel());
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, Message);
 }
 
 

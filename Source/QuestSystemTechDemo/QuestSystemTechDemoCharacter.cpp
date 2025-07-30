@@ -56,8 +56,6 @@ AQuestSystemTechDemoCharacter::AQuestSystemTechDemoCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 
 	QuestBearer = CreateDefaultSubobject<UQuestBearer>(TEXT("QuestBearer"));
-
-	QuestGiver = CreateDefaultSubobject<UQuestGiver>(TEXT("QuestGiver"));
 }
 
 void AQuestSystemTechDemoCharacter::BeginPlay()

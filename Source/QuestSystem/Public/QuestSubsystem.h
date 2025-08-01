@@ -53,7 +53,7 @@ public:
 	FOnQuestCompleted OnQuestCompleted;
 
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnQuestTurnedIn, UQuestBase*, Quest, UQuestBearer*, Bearer, UQuestGiver*, Giver);
-	UPROPERTY(BlueprintCallable, Category = "Quest Events")
+	UPROPERTY(BlueprintAssignable, Category = "Quest Events")
 	FOnQuestTurnedIn OnQuestTurnedIn;
 
 

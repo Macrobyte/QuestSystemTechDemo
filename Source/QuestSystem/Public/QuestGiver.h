@@ -11,7 +11,7 @@ DECLARE_LOG_CATEGORY_EXTERN(LogQuestSystem, Warning, All);
 class UQuestBearer;
 class UQuestBase;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(QuestSystem), meta=(BlueprintSpawnableComponent) )
 class QUESTSYSTEM_API UQuestGiver : public UActorComponent
 {
 	GENERATED_BODY()

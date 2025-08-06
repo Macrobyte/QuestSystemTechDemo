@@ -9,7 +9,7 @@
 
 class UQuestBase;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(QuestSystem), meta=(BlueprintSpawnableComponent) )
 class QUESTSYSTEM_API UQuestBearer : public UActorComponent
 {
 	GENERATED_BODY()

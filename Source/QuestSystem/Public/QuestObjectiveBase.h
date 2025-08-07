@@ -8,10 +8,10 @@
 #include "QuestObjectiveBase.generated.h"
 
 class UQuestBase;
-/**
- * 
- */
-UCLASS()
+
+DECLARE_LOG_CATEGORY_EXTERN(LogQuestObjective, Warning, All);
+
+UCLASS(Abstract, Blueprintable, EditInlineNew)
 class QUESTSYSTEM_API UQuestObjectiveBase : public UObject
 {
 	GENERATED_BODY()

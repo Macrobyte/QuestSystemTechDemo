@@ -24,9 +24,7 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<UQuestBase* > Quests;
-
-	// When player accepts a quest give them the next quest in the list.
-	// In UI this will be a button to accept the quest.
+	
 	UFUNCTION(BlueprintCallable, Category = "Quest")
 	bool GiveQuest(UQuestBearer* QuestBearer);
 

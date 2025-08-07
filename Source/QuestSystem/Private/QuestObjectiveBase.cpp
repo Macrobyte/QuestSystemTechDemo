@@ -3,6 +3,8 @@
 
 #include "QuestObjectiveBase.h"
 
+DEFINE_LOG_CATEGORY(LogQuestObjective);
+
 void UQuestObjectiveBase::Initialize(UQuestBase* Quest)
 {
 	OwningQuest = Quest;

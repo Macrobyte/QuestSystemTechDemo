@@ -5,6 +5,7 @@
 #include "QuestBase.h"
 #include "QuestBearer.h"
 #include "QuestEventMessage.h"
+#include "QuestGiver.h"
 
 void UQuestSubsystem::AcceptQuest(UQuestBase* Quest, UQuestBearer* Bearer, UQuestGiver* Giver)
 {
@@ -13,7 +14,18 @@ void UQuestSubsystem::AcceptQuest(UQuestBase* Quest, UQuestBearer* Bearer, UQues
 	QuestInstance.Bearer = Bearer;
 	QuestInstance.Giver = Giver;
 	
+	UE_LOG(LogTemp, Warning, TEXT("Accepting Quest: %s for Bearer: %s from Giver: %s"), 
+		*Quest->Title.ToString(), 
+		*Bearer->GetOwner()->GetActorLabel(), 
+		*Giver->GetOwner()->GetActorLabel());
+	
 	QuestInstance.Quest->bIsActive = true;
+
+	for (auto Objective : QuestInstance.Quest->Objectives)
+	{
+		UQuestObjectiveBase* ObjectiveInstance = NewObject<UQuestObjectiveBase>(this, Objective);
+		ObjectiveInstance->Initialize(QuestInstance.Quest);
+	}
 	
 	ActiveQuests.Add(QuestInstance.Quest->QuestTag, QuestInstance);
 

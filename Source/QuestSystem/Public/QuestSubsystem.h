@@ -10,7 +10,7 @@
 #include "QuestSubsystem.generated.h"
 
 
-
+class UQuestObjectiveBase;
 class UQuestGiver;
 class UQuestBearer;
 class UQuestBase;
@@ -31,6 +31,9 @@ struct FQuestInstance
 
 	UPROPERTY()
 	UQuestGiver* Giver;
+
+	UPROPERTY()
+	TArray<UQuestObjectiveBase*> ActiveObjectiveInstances;
 };
 
 

@@ -11,7 +11,8 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "QuestBearer.h"
-#include "QuestGiver.h"
+#include "QuestEventMessage.h"
+#include "QuestSubsystem.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -64,6 +65,16 @@ void AQuestSystemTechDemoCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	//QuestGiver->GiveQuest(QuestBearer);
+}
+
+void AQuestSystemTechDemoCharacter::TestQuestMessage()
+{
+	FQuestEventMessage QuestEventMessage;
+	QuestEventMessage.QuestTag = FGameplayTag::RequestGameplayTag(TEXT("Quest.Test"));
+	QuestEventMessage.Instigator = this;
+	
+	UQuestSubsystem* Subsystem = GetGameInstance()->GetSubsystem<UQuestSubsystem>();
+	Subsystem->HandleQuestEvent(QuestEventMessage.QuestTag, QuestEventMessage);
 }
 
 //////////////////////////////////////////////////////////////////////////
